@@ -104,41 +104,7 @@ curl -XPOST http://localhost:9200/index/string2int/_search -d'
 </pre>
  response:
 <pre>
-{
-    "took": 46,
-    "timed_out": false,
-    "_shards": {
-        "total": 5,
-        "successful": 5,
-        "failed": 0
-    },
-    "hits": {
-        "total": 1,
-        "max_score": 1,
-        "hits": [
-            {
-                "_index": "index",
-                "_type": "string2int",
-                "_id": "1",
-                "_score": 1
-            }
-        ]
-    },
-    "facets": {
-        "author": {
-            "_type": "terms",
-            "missing": 0,
-            "total": 1,
-            "other": 0,
-            "terms": [
-                {
-                    "term": "6",
-                    "count": 1
-                }
-            ]
-        }
-    }
-}
+{"took":9,"timed_out":false,"_shards":{"total":5,"successful":5,"failed":0},"hits":{"total":3,"max_score":1.0,"hits":[{"_index":"index","_type":"string2int","_id":"1","_score":1.0},{"_index":"index","_type":"string2int","_id":"2","_score":1.0},{"_index":"index","_type":"string2int","_id":"3","_score":1.0}]},"facets":{"author":{"_type":"terms","missing":0,"total":3,"other":0,"terms":[{"term":"6","count":2},{"term":"7","count":1}]}}}
 </pre>
 
 the next step is to replace the everything back.
