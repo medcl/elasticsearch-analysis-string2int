@@ -18,7 +18,7 @@ sometimes there are some entities in our index,for example,people's name,the tit
 generally we set these fields to `not_analyzed` and hope to use them together,
 and they often slightly change ,but if you wanna do faceting over these fields,
 you should be very carefully,because the memory usage is a headache,especially it contains a lot of of terms,
-but if you can convert the long entity string  into a little number,
+but if you can convert these long string entities into numbers,
 the memory usage will be a little smaller,and make the impossible thing  to be possible.
 
 the plugin use redis to store the mapping of your entity and the number.
