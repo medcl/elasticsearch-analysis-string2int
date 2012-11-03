@@ -15,6 +15,7 @@ package org.elasticsearch.index.analysis;
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+
 import org.apache.lucene.analysis.Tokenizer;
 import org.elasticsearch.common.inject.Inject;
 import org.elasticsearch.common.inject.assistedinject.Assisted;
@@ -28,23 +29,26 @@ import java.io.Reader;
  */
 public class String2IntTokenizerFactory extends AbstractTokenizerFactory {
 
-   private String redis_server;
-   private int redis_port;
-   private String redis_key;
+    private String redis_server;
+    private int redis_port;
+    private String redis_key;
     private boolean local_mem_cache;
+
     @Inject
     public String2IntTokenizerFactory(Index index, @IndexSettings Settings indexSettings, @Assisted String name, @Assisted Settings settings) {
         super(index, indexSettings, name, settings);
-         redis_server = settings.get("redis_server", "127.0.0.1");
-         redis_port = Integer.valueOf(settings.get("redis_port", "6379"));
-         redis_key = settings.get("redis_key", "default_key");
-        String str=settings.get("local_mem_cache", "true");
-        if(!str.equals("true")){local_mem_cache =false;}
+        redis_server = settings.get("redis_server", "127.0.0.1");
+        redis_port = Integer.valueOf(settings.get("redis_port", "6379"));
+        redis_key = settings.get("redis_key", "default_key");
+        String str = settings.get("local_mem_cache", "true");
+        if (!str.equals("true")) {
+            local_mem_cache = false;
+        }
     }
 
     @Override
     public Tokenizer create(Reader reader) {
-            return new String2IntTokenizer(reader,redis_server, redis_port, redis_key,local_mem_cache);
+        return new String2IntTokenizer(reader, redis_server, redis_port, redis_key, local_mem_cache);
     }
 }
 

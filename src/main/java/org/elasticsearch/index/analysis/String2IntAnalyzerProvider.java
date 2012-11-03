@@ -15,6 +15,7 @@ package org.elasticsearch.index.analysis;
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+
 import org.elasticsearch.common.inject.Inject;
 import org.elasticsearch.common.inject.assistedinject.Assisted;
 import org.elasticsearch.common.settings.Settings;

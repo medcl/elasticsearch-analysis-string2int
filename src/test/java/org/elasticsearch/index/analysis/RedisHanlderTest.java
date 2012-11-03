@@ -10,11 +10,12 @@ import org.testng.annotations.Test;
 public class RedisHanlderTest {
     @Test
     public void testAddNewItem() throws Exception {
-        RedisHanlder redisHanlder=RedisHanlder.getInstance("localhost",6379,true);
+
+       {RedisHanlder redisHanlder=RedisHanlder.getInstance("localhost",6379,true);
         System.out.println(redisHanlder.convert("key1", "北京"));
         System.out.println(redisHanlder.convert("key1","北京"));
         System.out.println(redisHanlder.convert("key1","北京2"));
         System.out.println(redisHanlder.convert("key1","北京3"));
         System.out.println(redisHanlder.convert("key1","北京4"));
     }
-}
+}}

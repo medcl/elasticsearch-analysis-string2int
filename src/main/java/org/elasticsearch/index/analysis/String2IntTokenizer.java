@@ -15,6 +15,7 @@ package org.elasticsearch.index.analysis;
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+
 import org.apache.lucene.analysis.Tokenizer;
 import org.apache.lucene.analysis.tokenattributes.CharTermAttribute;
 import org.apache.lucene.analysis.tokenattributes.OffsetAttribute;
@@ -41,16 +42,17 @@ public class String2IntTokenizer extends Tokenizer {
     private String redis_server;
     private String redis_key;
     private int redis_port;
-    private boolean local_mem_cache=true;
+    private boolean local_mem_cache = true;
     private RedisHanlder handler;
-    private static ESLogger logger= Loggers.getLogger("sting2int");
-    public String2IntTokenizer(Reader reader, String redis_server, int redis_port,String redis_key,boolean local_mem_cache) {
+    private static ESLogger logger = Loggers.getLogger("sting2int");
+
+    public String2IntTokenizer(Reader reader, String redis_server, int redis_port, String redis_key, boolean local_mem_cache) {
         this(reader, DEFAULT_BUFFER_SIZE);
         this.redis_server = redis_server;
         this.redis_key = redis_key;
         this.redis_port = redis_port;
         this.local_mem_cache = local_mem_cache;
-        handler= RedisHanlder.getInstance(redis_server,redis_port,local_mem_cache);
+        handler = RedisHanlder.getInstance(redis_server, redis_port, local_mem_cache);
     }
 
     public String2IntTokenizer(Reader input, int bufferSize) {
@@ -76,10 +78,10 @@ public class String2IntTokenizer extends Tokenizer {
             termAtt.setLength(upto);
             String str = termAtt.toString();
             termAtt.setEmpty();
-            long converted= handler.convert(redis_key,str);
+            long converted = handler.convert(redis_key, str);
             termAtt.append(String.valueOf(converted));
 
-            logger.info(str+">"+converted);
+            logger.info(str + ">" + converted);
 
             finalOffset = correctOffset(upto);
             offsetAtt.setOffset(correctOffset(0), finalOffset);
