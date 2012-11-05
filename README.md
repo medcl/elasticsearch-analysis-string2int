@@ -13,7 +13,7 @@ In order to install the plugin, simply run: `bin/plugin -install medcl/elasticse
 
 The plugin includes a `string2int` analyzer , a `string2int` tokenizer  and a `string2int` token-filter.
 
-this plugin is used to save your memory and reduce the size of your index.
+this plugin is used for saving your memory and reduce the size of your index.
 sometimes there are some entities in our index,for example,people's name,the title of you position,and so on,
 generally we set these fields to `not_analyzed` and hope to use them together,
 and they often slightly change ,but if you wanna do faceting over these fields,
