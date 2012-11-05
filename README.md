@@ -11,7 +11,7 @@ In order to install the plugin, simply run: `bin/plugin -install medcl/elasticse
     | master                        | 0.19 -> master |
     --------------------------------------------------
 
-The plugin includes a `string2int` analyzer , a tokenizer: `string2int`  and a token-filter:  `string2int` .
+The plugin includes a `string2int` analyzer , a `string2int` tokenizer  and a `string2int` token-filter.
 
 this plugin is used to save your memory and reduce the size of your index.
 sometimes there are some entities in our index,for example,people's name,the title of you position,and so on,
