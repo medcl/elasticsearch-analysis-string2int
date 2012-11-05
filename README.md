@@ -120,3 +120,21 @@ redis
     redis_key:"default_key"
     local_mem_cache: "true"
 </pre>
+
+another token-filter example:
+<pre>
+index:
+  analysis:
+    tokenizer:
+      my_string2int:
+          type: "string2int"
+          redis_server: "127.0.0.1"
+          redis_port: 6379
+          redis_key: "index1_type2_name2"
+
+    analyzer:
+      custom_string2int:
+          type: custom
+          tokenizer: whitespace
+          filter: [my_string2int,lowercase]
+</pre>
