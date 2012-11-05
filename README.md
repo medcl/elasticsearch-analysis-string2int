@@ -60,7 +60,8 @@ curl -XPOST http://localhost:9200/index/string2int/_mapping -d'
         "properties": {
             "author": {
                 "type": "string",
-                "analyzer": "string2int",
+                "index_analyzer": "string2int",
+                "search_analyzer": "keyword",
                 "include_in_all": false,
                 "store":true
             }
