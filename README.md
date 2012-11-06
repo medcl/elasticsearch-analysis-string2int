@@ -3,7 +3,7 @@ String2Integer Analysis for ElasticSearch
 
 
 
-In order to install the plugin, simply run: `bin/plugin -install medcl/elasticsearch-analysis-string2int/1.0.0`.
+In order to install the plugin, simply run: `bin/plugin -install medcl/elasticsearch-analysis-string2int/1.0.1`.
 
     --------------------------------------------------
     | String2Integer Analysis Plugin| ElasticSearch  |
