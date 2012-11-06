@@ -93,7 +93,10 @@ public class RedisHanlder {
                 long from_cache = get_from_cache(redis_key, item);
 //        System.out.println("fromcache"+from_cache);
                 if (from_cache > -1) {
-                    logger.info("hit cache:" + redis_key + "/" + item + ":" + from_cache);
+                    if(logger.isDebugEnabled())
+                    {
+                        logger.debug("hit cache:" + redis_key + "/" + item + ":" + from_cache);
+                    }
                     return from_cache;
                 }
             }

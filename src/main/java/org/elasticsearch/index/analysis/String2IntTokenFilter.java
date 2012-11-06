@@ -51,7 +51,10 @@ public class String2IntTokenFilter extends TokenFilter {
         termAtt.setEmpty();
         long converted = handler.convert(redis_key, str);
         stringBuilder.append(String.valueOf(converted));
-        logger.info(str + ">" + converted);
+        if(logger.isDebugEnabled())
+        {
+            logger.debug(str + ">" + converted);
+        }
 
 
         termAtt.resizeBuffer(stringBuilder.length());

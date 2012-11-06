@@ -81,7 +81,10 @@ public class String2IntTokenizer extends Tokenizer {
             long converted = handler.convert(redis_key, str);
             termAtt.append(String.valueOf(converted));
 
-            logger.info(str + ">" + converted);
+            if(logger.isDebugEnabled())
+            {
+                logger.debug(str + ">" + converted);
+            }
 
             finalOffset = correctOffset(upto);
             offsetAtt.setOffset(correctOffset(0), finalOffset);
