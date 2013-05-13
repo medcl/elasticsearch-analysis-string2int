@@ -28,6 +28,7 @@ import org.apache.lucene.analysis.tokenattributes.CharTermAttribute;
 import org.apache.lucene.util.Version;
 import org.elasticsearch.common.inject.Injector;
 import org.elasticsearch.common.inject.ModulesBuilder;
+import org.elasticsearch.common.joda.time.DateTime;
 import org.elasticsearch.common.settings.SettingsModule;
 import org.elasticsearch.env.Environment;
 import org.elasticsearch.env.EnvironmentModule;
@@ -75,7 +76,7 @@ public class AnalysisTests {
     public void testTokenFilter() throws IOException{
         StringReader sr = new StringReader("刘德华 张学友");
         Analyzer analyzer = new WhitespaceAnalyzer(Version.LUCENE_36);
-        String2IntTokenFilter filter = new String2IntTokenFilter(analyzer.tokenStream("f",sr),"localhost",6379,"key123",true);
+        String2IntTokenFilter filter = new String2IntTokenFilter(analyzer.tokenStream("f",sr),"localhost",6379,"key123",true,false);
         List<String>  list= new ArrayList<String>();
         while (filter.incrementToken())
         {
@@ -92,7 +93,7 @@ public class AnalysisTests {
     public void TestTokenFilter1(){
         StringReader sr1 = new StringReader("刘德华");
         Analyzer analyzer = new KeywordAnalyzer();
-       TokenFilter filter = new String2IntTokenFilter(analyzer.tokenStream("f",sr1),"localhost",6379,"key123",true);
+       TokenFilter filter = new String2IntTokenFilter(analyzer.tokenStream("f",sr1),"localhost",6379,"key123",true,false);
         List<String>  list= new ArrayList<String>();
         try {
             while (filter.incrementToken())
@@ -115,7 +116,7 @@ public class AnalysisTests {
             System.out.println(value);
             StringReader sr = new StringReader(value);
 
-            String2IntTokenizer tokenizer = new String2IntTokenizer(sr,"localhost",6379,"key11",true);
+            String2IntTokenizer tokenizer = new String2IntTokenizer(sr,"localhost",6379,"key11",true,false);
 
             boolean hasnext = tokenizer.incrementToken();
 
@@ -131,4 +132,32 @@ public class AnalysisTests {
         }
 
     }
+
+
+
+    public void TestLRUTokenizer() throws IOException {
+
+        while (true){
+            String value= DateTime.now().toLocalDateTime().toString();
+//            System.out.println(value);
+            StringReader sr = new StringReader(value);
+
+            String2IntTokenizer tokenizer = new String2IntTokenizer(sr,"localhost",6379,"key11",true,false);
+//            String2IntTokenizer tokenizer = new String2IntTokenizer(sr,"localhost",6379,"key11",true,true);
+
+            boolean hasnext = tokenizer.incrementToken();
+
+            while (hasnext) {
+
+                CharTermAttribute ta = tokenizer.getAttribute(CharTermAttribute.class);
+
+//                System.out.println(ta.toString());
+
+                hasnext = tokenizer.incrementToken();
+
+            }
+        }
+
+    }
+
 }

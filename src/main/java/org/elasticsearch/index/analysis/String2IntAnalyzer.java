@@ -32,6 +32,7 @@ public final class String2IntAnalyzer extends Analyzer {
     private String redis_key;
     private int redis_port;
     private boolean local_mem_cache = true;
+    private boolean use_lru_cache = true;
     private RedisHanlder handler;
 
     public String2IntAnalyzer(Settings settings) {
@@ -42,12 +43,17 @@ public final class String2IntAnalyzer extends Analyzer {
         if (!str.equals("true")) {
             local_mem_cache = false;
         }
-        handler = RedisHanlder.getInstance(redis_server, redis_port, local_mem_cache);
+        str = settings.get("use_lru_cache", "true");
+        if (!str.equals("true")) {
+            use_lru_cache = false;
+        }
+
+        handler = RedisHanlder.getInstance(redis_server, redis_port, local_mem_cache,use_lru_cache);
     }
 
     @Override
     public TokenStream tokenStream(String fieldName, Reader reader) {
-        return new String2IntTokenizer(reader, redis_server, redis_port, redis_key, local_mem_cache);
+        return new String2IntTokenizer(reader, redis_server, redis_port, redis_key, local_mem_cache,use_lru_cache);
     }
 
     @Override
@@ -57,7 +63,7 @@ public final class String2IntAnalyzer extends Analyzer {
         Tokenizer tokenizer = (Tokenizer) getPreviousTokenStream();
 
         if (tokenizer == null) {
-            tokenizer = new String2IntTokenizer(reader, redis_server, redis_port, redis_key, local_mem_cache);
+            tokenizer = new String2IntTokenizer(reader, redis_server, redis_port, redis_key, local_mem_cache,use_lru_cache);
             setPreviousTokenStream(tokenizer);
         } else {
             //如果上一次生成过TokenStream，则reset初始化。

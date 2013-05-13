@@ -6,9 +6,8 @@
     <modelVersion>4.0.0</modelVersion>
     <groupId>org.elasticsearch</groupId>
     <artifactId>elasticsearch-analysis-string2int</artifactId>
-    <version>1.0.1</version>
+    <version>1.1.2</version>
     <packaging>jar</packaging>
-    <description></description>
     <inceptionYear>2012</inceptionYear>
     <licenses>
         <license>
@@ -31,7 +30,7 @@
     </parent>
 
     <properties>
-        <elasticsearch.version>0.19.8</elasticsearch.version>
+        <elasticsearch.version>0.20.2</elasticsearch.version>
     </properties>
 
 
@@ -47,6 +46,11 @@
             </snapshots>
             <url>http://oss.sonatype.org/content/repositories/releases/</url>
         </repository>
+        <repository>
+            <id>staging.oss.sonatype.org</id>
+            <name>Staging Sonatype repository</name>
+            <url>https://oss.sonatype.org/content/groups/staging/</url>
+        </repository>
     </repositories>
 
     <dependencies>
@@ -56,6 +60,12 @@
             <artifactId>elasticsearch</artifactId>
             <version>${elasticsearch.version}</version>
             <scope>compile</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>com.google.code.simplelrucache</groupId>
+            <artifactId>simplelrucache</artifactId>
+            <version>0.1</version>
         </dependency>
 
         <dependency>

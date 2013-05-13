@@ -29,6 +29,7 @@ public class String2IntTokenFilterFactory extends AbstractTokenFilterFactory {
     private int redis_port;
     private String redis_key;
     private boolean local_mem_cache;
+    private boolean use_lru_cache;
 
     @Inject
     public String2IntTokenFilterFactory(Index index, @IndexSettings Settings indexSettings, @Assisted String name, @Assisted Settings settings) {
@@ -40,10 +41,14 @@ public class String2IntTokenFilterFactory extends AbstractTokenFilterFactory {
         if (!str.equals("true")) {
             local_mem_cache = false;
         }
+        str = settings.get("use_lru_cache", "true");
+        if (!str.equals("true")) {
+            use_lru_cache = false;
+        }
     }
 
     @Override
     public TokenStream create(TokenStream tokenStream) {
-        return new String2IntTokenFilter(tokenStream, redis_server, redis_port, redis_key, local_mem_cache);
+        return new String2IntTokenFilter(tokenStream, redis_server, redis_port, redis_key, local_mem_cache,use_lru_cache);
     }
 }

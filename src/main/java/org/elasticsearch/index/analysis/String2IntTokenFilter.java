@@ -38,6 +38,7 @@ public class String2IntTokenFilter extends TokenFilter {
     private boolean local_mem_cache = true;
     private RedisHanlder handler;
     private static ESLogger logger = Loggers.getLogger("sting2int");
+    private boolean use_lsu_cache;
 
     @Override
     public final boolean incrementToken() throws IOException {
@@ -63,12 +64,13 @@ public class String2IntTokenFilter extends TokenFilter {
         return true;
     }
 
-    public String2IntTokenFilter(TokenStream in, String redis_server, int redis_port, String redis_key, boolean local_mem_cache) {
+    public String2IntTokenFilter(TokenStream in, String redis_server, int redis_port, String redis_key, boolean local_mem_cache,boolean use_lru_cache) {
         super(in);
         this.redis_server = redis_server;
         this.redis_key = redis_key;
         this.redis_port = redis_port;
         this.local_mem_cache = local_mem_cache;
-        handler = RedisHanlder.getInstance(redis_server, redis_port, local_mem_cache);
+        this.use_lsu_cache = use_lru_cache;
+        handler = RedisHanlder.getInstance(redis_server, redis_port, local_mem_cache,use_lru_cache);
     }
 }

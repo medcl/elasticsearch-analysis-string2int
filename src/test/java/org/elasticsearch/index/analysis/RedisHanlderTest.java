@@ -11,7 +11,7 @@ public class RedisHanlderTest {
     @Test
     public void testAddNewItem() throws Exception {
 
-       {RedisHanlder redisHanlder=RedisHanlder.getInstance("localhost",6379,true);
+       {RedisHanlder redisHanlder=RedisHanlder.getInstance("localhost",6379,true,false);
         System.out.println(redisHanlder.convert("key1", "北京"));
         System.out.println(redisHanlder.convert("key1","北京"));
         System.out.println(redisHanlder.convert("key1","北京2"));

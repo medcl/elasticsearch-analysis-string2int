@@ -33,6 +33,7 @@ public class String2IntTokenizerFactory extends AbstractTokenizerFactory {
     private int redis_port;
     private String redis_key;
     private boolean local_mem_cache;
+    private boolean use_lru_cache;
 
     @Inject
     public String2IntTokenizerFactory(Index index, @IndexSettings Settings indexSettings, @Assisted String name, @Assisted Settings settings) {
@@ -41,14 +42,20 @@ public class String2IntTokenizerFactory extends AbstractTokenizerFactory {
         redis_port = Integer.valueOf(settings.get("redis_port", "6379"));
         redis_key = settings.get("redis_key", "default_key");
         String str = settings.get("local_mem_cache", "true");
+
         if (!str.equals("true")) {
             local_mem_cache = false;
+        }
+
+        str = settings.get("use_lru_cache", "true");
+        if (!str.equals("true")) {
+            use_lru_cache = false;
         }
     }
 
     @Override
     public Tokenizer create(Reader reader) {
-        return new String2IntTokenizer(reader, redis_server, redis_port, redis_key, local_mem_cache);
+        return new String2IntTokenizer(reader, redis_server, redis_port, redis_key, local_mem_cache,use_lru_cache);
     }
 }
 

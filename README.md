@@ -119,6 +119,7 @@ redis
     redis_port:6379
     redis_key:"default_key"
     local_mem_cache: "true"
+    use_lru_cache: "true"
 </pre>
 
 another token-filter example:
