@@ -101,9 +101,9 @@ public class String2IntTokenizer extends Tokenizer {
         offsetAtt.setOffset(finalOffset, finalOffset);
     }
 
-    @Override
+
     public void reset(Reader input) throws IOException {
-        super.reset(input);
+        super.reset();
         this.done = false;
     }
 

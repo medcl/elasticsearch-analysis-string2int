@@ -21,9 +21,9 @@ package org.elasticsearch.index.analysis;
 
 import junit.framework.Assert;
 import org.apache.lucene.analysis.Analyzer;
-import org.apache.lucene.analysis.KeywordAnalyzer;
 import org.apache.lucene.analysis.TokenFilter;
-import org.apache.lucene.analysis.WhitespaceAnalyzer;
+import org.apache.lucene.analysis.core.KeywordAnalyzer;
+import org.apache.lucene.analysis.core.WhitespaceAnalyzer;
 import org.apache.lucene.analysis.tokenattributes.CharTermAttribute;
 import org.apache.lucene.util.Version;
 import org.elasticsearch.common.inject.Injector;
@@ -78,6 +78,7 @@ public class AnalysisTests {
         Analyzer analyzer = new WhitespaceAnalyzer(Version.LUCENE_36);
         String2IntTokenFilter filter = new String2IntTokenFilter(analyzer.tokenStream("f",sr),"localhost",6379,"key123",true,false);
         List<String>  list= new ArrayList<String>();
+        filter.reset();
         while (filter.incrementToken())
         {
             CharTermAttribute ta = filter.getAttribute(CharTermAttribute.class);
@@ -90,12 +91,13 @@ public class AnalysisTests {
     }
 
     @Test
-    public void TestTokenFilter1(){
+    public void TestTokenFilter1() throws IOException {
         StringReader sr1 = new StringReader("刘德华");
         Analyzer analyzer = new KeywordAnalyzer();
        TokenFilter filter = new String2IntTokenFilter(analyzer.tokenStream("f",sr1),"localhost",6379,"key123",true,false);
         List<String>  list= new ArrayList<String>();
         try {
+            filter.reset();
             while (filter.incrementToken())
             {
                 CharTermAttribute ta = filter.getAttribute(CharTermAttribute.class);
