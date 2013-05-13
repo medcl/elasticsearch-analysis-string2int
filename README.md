@@ -3,12 +3,14 @@ String2Integer Analysis for ElasticSearch
 
 
 
-In order to install the plugin, simply run: `bin/plugin -install medcl/elasticsearch-analysis-string2int/1.0.1`.
+you can download this plugin from RTF project(https://github.com/medcl/elasticsearch-rtf)
 
     --------------------------------------------------
     | String2Integer Analysis Plugin| ElasticSearch  |
     --------------------------------------------------
-    | master                        | 0.19 -> master |
+    | 1.2.0                        | 0.90.x          |
+    --------------------------------------------------
+    | 1.0.0                        | 0.19.x          |
     --------------------------------------------------
 
 The plugin includes a `string2int` analyzer , a `string2int` tokenizer  and a `string2int` token-filter.
