@@ -106,6 +106,10 @@ public class String2IntTokenizer extends Tokenizer {
         super.reset();
         this.done = false;
     }
+    public void reset() throws IOException {
+        super.reset();
+        this.done = false;
+    }
 
 
 }
