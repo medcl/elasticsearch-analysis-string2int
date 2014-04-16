@@ -4,11 +4,13 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <name>elasticsearch-analysis-string2int</name>
     <modelVersion>4.0.0</modelVersion>
-    <groupId>org.elasticsearch</groupId>
+    <groupId>com.infinitbyte</groupId>
     <artifactId>elasticsearch-analysis-string2int</artifactId>
-    <version>1.2.1</version>
+    <version>1.3.0</version>
     <packaging>jar</packaging>
     <inceptionYear>2012</inceptionYear>
+    <url>http://log.medcl.net</url>
+
     <licenses>
         <license>
             <name>The Apache Software License, Version 2.0</name>
@@ -30,28 +32,8 @@
     </parent>
 
     <properties>
-        <elasticsearch.version>0.90.0</elasticsearch.version>
+        <elasticsearch.version>1.0.0</elasticsearch.version>
     </properties>
-
-
-    <repositories>
-        <repository>
-            <id>oss.sonatype.org</id>
-            <name>OSS Sonatype</name>
-            <releases>
-                <enabled>true</enabled>
-            </releases>
-            <snapshots>
-                <enabled>true</enabled>
-            </snapshots>
-            <url>http://oss.sonatype.org/content/repositories/releases/</url>
-        </repository>
-        <repository>
-            <id>staging.oss.sonatype.org</id>
-            <name>Staging Sonatype repository</name>
-            <url>https://oss.sonatype.org/content/groups/staging/</url>
-        </repository>
-    </repositories>
 
     <dependencies>
 
@@ -65,8 +47,7 @@
         <dependency>
             <groupId>com.google.code.simplelrucache</groupId>
             <artifactId>simplelrucache</artifactId>
-            <version>0.1</version>
-            <scope>provided</scope>
+            <version>1.0</version>
         </dependency>
 
         <dependency>
@@ -115,6 +96,19 @@
         <plugins>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-gpg-plugin</artifactId>
+                <executions>
+                    <execution>
+                        <id>sign-artifacts</id>
+                        <phase>verify</phase>
+                        <goals>
+                            <goal>sign</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
                 <version>2.3.2</version>
                 <configuration>
@@ -134,16 +128,13 @@
             </plugin>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-javadoc-plugin</artifactId>
+                <version>2.9</version>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-source-plugin</artifactId>
-                <version>2.1.2</version>
-                <executions>
-                    <execution>
-                        <id>attach-sources</id>
-                        <goals>
-                            <goal>jar</goal>
-                        </goals>
-                    </execution>
-                </executions>
+                <version>2.2.1</version>
             </plugin>
             <plugin>
                 <artifactId>maven-assembly-plugin</artifactId>
@@ -166,4 +157,13 @@
             </plugin>
         </plugins>
     </build>
+
+    <distributionManagement>
+        <repository>
+            <id>sonatype-nexus-staging</id>
+            <name>Nexus Staging Repository</name>
+            <url>https://oss.sonatype.org/service/local/staging/deploy/maven2/</url>
+        </repository>
+    </distributionManagement>
+
 </project>

@@ -96,20 +96,17 @@ public class String2IntTokenizer extends Tokenizer {
     }
 
     @Override
-    public final void end() {
+    public final void end() throws IOException {
+        super.end();
         // set final offset
         offsetAtt.setOffset(finalOffset, finalOffset);
     }
 
 
-    public void reset(Reader input) throws IOException {
-        super.reset();
-        this.done = false;
-    }
+    @Override
     public void reset() throws IOException {
         super.reset();
         this.done = false;
     }
-
 
 }

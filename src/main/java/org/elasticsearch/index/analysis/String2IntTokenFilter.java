@@ -61,6 +61,7 @@ public class String2IntTokenFilter extends TokenFilter {
         termAtt.resizeBuffer(stringBuilder.length());
         termAtt.append(stringBuilder.toString());
         termAtt.setLength(stringBuilder.length());
+
         return true;
     }
 
@@ -72,5 +73,16 @@ public class String2IntTokenFilter extends TokenFilter {
         this.local_mem_cache = local_mem_cache;
         this.use_lsu_cache = use_lru_cache;
         handler = RedisHanlder.getInstance(redis_server, redis_port, local_mem_cache,use_lru_cache);
+    }
+
+    @Override
+    public final void end() throws IOException {
+        // set final offset
+        super.end();
+    }
+
+    @Override
+    public void reset() throws IOException {
+        super.reset();
     }
 }

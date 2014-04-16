@@ -17,8 +17,11 @@ package org.elasticsearch.index.analysis;
  */
 
 import org.apache.lucene.analysis.Analyzer;
+import org.apache.lucene.analysis.TokenStream;
+import org.apache.lucene.analysis.Tokenizer;
 import org.elasticsearch.common.settings.Settings;
 
+import java.io.IOException;
 import java.io.Reader;
 
 
