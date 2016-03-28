@@ -47,8 +47,8 @@ public class String2IntTokenizer extends Tokenizer {
     private RedisHanlder handler;
     private static ESLogger logger = Loggers.getLogger("sting2int");
 
-    public String2IntTokenizer(Reader reader, String redis_server, int redis_port, String redis_key, boolean local_mem_cache,boolean use_lru_cache) {
-        this(reader, DEFAULT_BUFFER_SIZE);
+    public String2IntTokenizer(String redis_server, int redis_port, String redis_key, boolean local_mem_cache,boolean use_lru_cache) {
+        this(DEFAULT_BUFFER_SIZE);
         this.redis_server = redis_server;
         this.redis_key = redis_key;
         this.redis_port = redis_port;
@@ -57,8 +57,8 @@ public class String2IntTokenizer extends Tokenizer {
         handler = RedisHanlder.getInstance(redis_server, redis_port, local_mem_cache, use_lru_cache);
     }
 
-    public String2IntTokenizer(Reader input, int bufferSize) {
-        super(input);
+    public String2IntTokenizer(int bufferSize) {
+        super();
         termAtt.resizeBuffer(bufferSize);
     }
 

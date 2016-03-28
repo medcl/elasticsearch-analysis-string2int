@@ -1,12 +1,13 @@
-String2Integer Analysis for ElasticSearch
+String2Integer Analysis for Elasticsearch
 ==================================
 
 
 
-you can download this plugin from RTF project(https://github.com/medcl/elasticsearch-rtf)
 
     --------------------------------------------------
-    | String2Integer Analysis Plugin| ElasticSearch  |
+    | String2Integer Analysis Plugin| Elasticsearch  |
+    --------------------------------------------------
+    | 1.4.0                        | 2.2.0           |
     --------------------------------------------------
     | 1.3.0                        | 1.0.0           |
     --------------------------------------------------
@@ -31,14 +32,19 @@ the number is assigned by auto_increment style,and in order to speedup the index
 
 how to use this plugin?
 
+NOTICE:
+
+From v2.0 Elasticsearch shiped with a ` Java Security Manager`, you need to config the security policy to enable jedis access,
+https://www.elastic.co/guide/en/elasticsearch/reference/2.2/modules-scripting-security.html#_disable_the_java_security_manager
+
 1.step one,add a custom analysis type in the elasticsearch.yml
 
 <pre>
 index:
   analysis:
     analyzer:
-      string2int:
-          type: org.elasticsearch.index.analysis.String2IntAnalyzerProvider
+      my_string2int:
+          type: string2int
           redis_server: "127.0.0.1"
           redis_port: 6379
           redis_key: "index1_type1_name1"

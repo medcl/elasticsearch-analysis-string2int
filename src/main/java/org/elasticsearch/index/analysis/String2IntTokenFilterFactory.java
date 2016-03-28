@@ -21,7 +21,7 @@ import org.elasticsearch.common.inject.Inject;
 import org.elasticsearch.common.inject.assistedinject.Assisted;
 import org.elasticsearch.common.settings.Settings;
 import org.elasticsearch.index.Index;
-import org.elasticsearch.index.settings.IndexSettings;
+import org.elasticsearch.index.settings.IndexSettingsService;
 
 
 public class String2IntTokenFilterFactory extends AbstractTokenFilterFactory {
@@ -32,8 +32,8 @@ public class String2IntTokenFilterFactory extends AbstractTokenFilterFactory {
     private boolean use_lru_cache;
 
     @Inject
-    public String2IntTokenFilterFactory(Index index, @IndexSettings Settings indexSettings, @Assisted String name, @Assisted Settings settings) {
-        super(index, indexSettings, name, settings);
+    public String2IntTokenFilterFactory(Index index, IndexSettingsService indexSettings, @Assisted String name, @Assisted Settings settings) {
+        super(index, indexSettings.getSettings(), name, settings);
         redis_server = settings.get("redis_server", "127.0.0.1");
         redis_port = Integer.valueOf(settings.get("redis_port", "6379"));
         redis_key = settings.get("redis_key", "default_key");

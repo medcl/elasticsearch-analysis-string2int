@@ -15,13 +15,18 @@ package org.elasticsearch.plugin.analysis.string2int;
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+import org.elasticsearch.analysis.String2IntIndicesAnalysisModule;
+import org.elasticsearch.common.inject.Module;
 import org.elasticsearch.index.analysis.AnalysisModule;
 import org.elasticsearch.index.analysis.String2IntAnalysisBinderProcessor;
-import org.elasticsearch.plugins.AbstractPlugin;
+import org.elasticsearch.plugins.Plugin;
+
+import java.util.Collection;
+import java.util.Collections;
 
 /**
  */
-public class AnalysisString2IntPlugin extends AbstractPlugin {
+public class AnalysisString2IntPlugin extends Plugin {
 
     @Override
     public String name() {
@@ -31,6 +36,12 @@ public class AnalysisString2IntPlugin extends AbstractPlugin {
     @Override
     public String description() {
         return "";
+    }
+
+
+    @Override
+    public Collection<Module> nodeModules() {
+        return Collections.<Module>singletonList(new String2IntIndicesAnalysisModule());
     }
 
     public void onModule(AnalysisModule module) {

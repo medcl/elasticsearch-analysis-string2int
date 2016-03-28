@@ -21,7 +21,7 @@ import org.elasticsearch.common.inject.assistedinject.Assisted;
 import org.elasticsearch.common.settings.Settings;
 import org.elasticsearch.env.Environment;
 import org.elasticsearch.index.Index;
-import org.elasticsearch.index.settings.IndexSettings;
+import org.elasticsearch.index.settings.IndexSettingsService;
 
 /**
  */
@@ -30,8 +30,8 @@ public class String2IntAnalyzerProvider extends AbstractIndexAnalyzerProvider<St
     private final String2IntAnalyzer analyzer;
 
     @Inject
-    public String2IntAnalyzerProvider(Index index, @IndexSettings Settings indexSettings, Environment env, @Assisted String name, @Assisted Settings settings) {
-        super(index, indexSettings, name, settings);
+    public String2IntAnalyzerProvider(Index index, IndexSettingsService indexSettings, Environment env, @Assisted String name, @Assisted Settings settings) {
+        super(index, indexSettings.getSettings(), name, settings);
         analyzer = new String2IntAnalyzer(settings);
     }
 
