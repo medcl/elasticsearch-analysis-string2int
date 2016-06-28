@@ -1,0 +1,4 @@
+grant {
+	permission java.lang.RuntimePermission "*";
+	permission java.lang.reflect.ReflectPermission "*";
+};
