@@ -6,7 +6,7 @@
     <modelVersion>4.0.0</modelVersion>
     <groupId>com.infinitbyte</groupId>
     <artifactId>elasticsearch-analysis-string2int</artifactId>
-    <version>1.4.23</version>
+    <version>1.5.3</version>
     <packaging>jar</packaging>
     <inceptionYear>2012</inceptionYear>
     <url>http://log.medcl.net</url>
