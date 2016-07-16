@@ -9,7 +9,6 @@ import org.testng.annotations.Test;
  * Time: 上午9:29
  */
 public class RedisHanlderTest {
-    @Test
     public void testAddNewItem() throws Exception {
 
         RedisHanlder redisHanlder=RedisHanlder.getInstance("localhost",6379,true,false);
